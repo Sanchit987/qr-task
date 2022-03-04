@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import QrGen from './components/qrgen';
+import React, {useState} from 'react';
+import QRCode from 'qrcode';
+
+function range(start, end) {
+  return Array(end - start + 1).fill().map((_, idx) => start + idx)
+}
 
 function App() {
+
+  const number = useState([...range(1, 10)]);
+  console.log(number[0]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {number[0].map(no => <div key={no}>
+        <QrGen text={`Candidate ${no}`} />
+      </div>)}
     </div>
   );
 }
